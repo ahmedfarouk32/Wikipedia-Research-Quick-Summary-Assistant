@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wikipedia Research & Quick Summary Assistant</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="wrap">
+      <span class="tag">06</span>
+      <div>
+        <h1>Wikipedia Research &amp; Quick Summary Assistant</h1>
+        <p class="subtitle">Live Wikipedia lookups, reading-time metrics, and exportable study decks.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="card" id="search-card">
+      <form id="search-form">
+        <label for="topic">Topic</label>
+        <input id="topic" type="text" placeholder="e.g. Photosynthesis" autocomplete="off" required>
+
+        <label>Explain it for</label>
+        <div class="mode-toggle">
+          <button type="button" class="mode-btn active" data-mode="beginner">Beginner (ELI5)</button>
+          <button type="button" class="mode-btn" data-mode="academic">Academic</button>
+        </div>
+
+        <button type="submit" id="search-btn">Search Wikipedia</button>
+      </form>
+      <p class="error" id="search-error"></p>
+    </section>
+
+    <section class="results" id="results" hidden>
+
+      <section class="card">
+        <div class="section-head">
+          <h2 id="result-title"></h2>
+          <button id="regenerate-btn" type="button">Regenerate for this mode</button>
+        </div>
+        <p class="link"><a id="result-url" target="_blank" rel="noopener"></a></p>
+
+        <div class="metrics" id="metrics"></div>
+
+        <h3>Summary <span id="summary-mode-tag" class="mode-tag"></span></h3>
+        <div id="explain-loading" class="hint" hidden>Personalizing explanation…</div>
+        <p id="result-summary"></p>
+
+        <h3>Key takeaways</h3>
+        <ul id="result-takeaways"></ul>
+
+        <h3>Key vocabulary</h3>
+        <dl id="result-vocab"></dl>
+
+        <h3>Related topics</h3>
+        <div class="chips" id="related-topics"></div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <h2>Study Quiz</h2>
+          <button id="quiz-btn" type="button">Generate quiz</button>
+        </div>
+        <p class="error" id="quiz-error"></p>
+        <div id="quiz-loading" class="hint" hidden>Generating quiz…</div>
+        <form id="quiz-form"></form>
+        <div id="quiz-score" class="hint" hidden></div>
+      </section>
+
+      <section class="card">
+        <div class="section-head">
+          <h2>Export</h2>
+          <button id="export-btn" type="button">Download study deck (.md)</button>
+        </div>
+        <p class="hint">Bundles the summary, reading metrics, related topics, and quiz (if generated) into one Markdown file.</p>
+      </section>
+
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
